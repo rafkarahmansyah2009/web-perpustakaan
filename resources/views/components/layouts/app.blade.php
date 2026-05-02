@@ -16,10 +16,8 @@
             <div class="flex items-center justify-between h-16">
                 {{-- Logo --}}
                 <a href="{{ route('home') }}" class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-btn flex items-center justify-center" style="background: linear-gradient(135deg, #1a4d2e, #366847);">
-                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                        </svg>
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center bg-white p-1" style="box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                        <img src="{{ asset('images/logo.jpg') }}" alt="Logo SMKN 5 Tangerang" class="w-full h-full object-contain">
                     </div>
                     <div>
                         <span class="font-headline text-lg font-bold text-[#1a4d2e] leading-none">Perpustakaan</span>
@@ -125,5 +123,94 @@
         </div>
     </footer>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // SweetAlert2 Delete Confirmation
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "swal-btn-confirm",
+                    cancelButton: "swal-btn-cancel"
+                },
+                buttonsStyling: false
+            });
+
+            document.querySelectorAll('form[onsubmit*="confirm"]').forEach(form => {
+                form.removeAttribute('onsubmit');
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const thisForm = this;
+                    swalWithBootstrapButtons.fire({
+                        title: "Apakah Anda yakin?",
+                        text: "Data yang dihapus tidak dapat dikembalikan!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Ya, hapus!",
+                        cancelButtonText: "Batal",
+                        reverseButtons: true,
+                        background: '#fbf9f4',
+                        color: '#1b1c19',
+                        showClass: {
+                            popup: 'animate__animated animate__fadeInDown animate__faster'
+                        },
+                        hideClass: {
+                            popup: 'animate__animated animate__fadeOutUp animate__faster'
+                        }
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            swalWithBootstrapButtons.fire({
+                                title: "Terhapus!",
+                                text: "Data telah berhasil dihapus.",
+                                icon: "success",
+                                background: '#fbf9f4',
+                                color: '#1b1c19',
+                                showClass: {
+                                    popup: 'animate__animated animate__fadeInDown animate__faster'
+                                },
+                                hideClass: {
+                                    popup: 'animate__animated animate__fadeOutUp animate__faster'
+                                }
+                            }).then(() => {
+                                thisForm.submit();
+                            });
+                        } else if (result.dismiss === Swal.DismissReason.cancel) {
+                            swalWithBootstrapButtons.fire({
+                                title: "Dibatalkan",
+                                text: "Data Anda tetap aman :)",
+                                icon: "error",
+                                background: '#fbf9f4',
+                                color: '#1b1c19',
+                                showClass: {
+                                    popup: 'animate__animated animate__fadeInDown animate__faster'
+                                },
+                                hideClass: {
+                                    popup: 'animate__animated animate__fadeOutUp animate__faster'
+                                }
+                            });
+                        }
+                    });
+                });
+            });
+
+            // Password Toggle Visibility
+            document.querySelectorAll('.toggle-password').forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const passwordInput = document.getElementById(targetId);
+                    if (!passwordInput) return;
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput.setAttribute('type', type);
+
+                    const eyeIcon = this.querySelector('svg');
+                    if (type === 'text') {
+                        eyeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />';
+                    } else {
+                        eyeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

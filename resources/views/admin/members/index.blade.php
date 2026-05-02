@@ -21,11 +21,11 @@
                             <span class="badge-borrowed !text-[10px]">Nonaktif</span>
                         @endif
                     </td>
-                    <td class="flex gap-2">
-                        <a href="{{ route('admin.members.edit', $member) }}" class="text-xs text-[#1a4d2e] hover:underline font-medium">Edit</a>
-                        <form method="POST" action="{{ route('admin.members.destroy', $member) }}" onsubmit="return confirm('Hapus anggota ini?')">
+                    <td class="flex items-center gap-2">
+                        <a href="{{ route('admin.members.edit', $member) }}" class="px-3 py-1.5 bg-[#1a4d2e]/10 text-[#1a4d2e] text-xs font-medium rounded-md hover:bg-[#1a4d2e] hover:text-white transition-colors duration-200">Edit</a>
+                        <form method="POST" action="{{ route('admin.members.destroy', $member) }}" onsubmit="return confirm('Hapus anggota ini?')" class="inline-block m-0 p-0">
                             @csrf @method('DELETE')
-                            <button class="text-xs text-[#c8401a] hover:underline font-medium">Hapus</button>
+                            <button type="submit" class="px-3 py-1.5 bg-[#c8401a]/10 text-[#c8401a] text-xs font-medium rounded-md hover:bg-[#c8401a] hover:text-white transition-colors duration-200">Hapus</button>
                         </form>
                     </td>
                 </tr>

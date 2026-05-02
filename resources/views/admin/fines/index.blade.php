@@ -8,7 +8,16 @@
 
     <div class="bg-white rounded-card overflow-hidden" style="box-shadow: 0 2px 12px rgba(26,77,46,0.04);">
         <table class="w-full table-scholarly">
-            <thead><tr class="bg-[#f5f3ee]"><th>Peminjam</th><th>Buku</th><th>Hari</th><th>Nominal</th><th>Status</th><th>Aksi</th></tr></thead>
+            <thead>
+                <tr class="bg-[#f5f3ee]">
+                    <th>Peminjam</th>
+                    <th>Buku</th>
+                    <th>Hari</th>
+                    <th>Nominal</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
             <tbody>
                 @forelse($fines as $fine)
                 <tr>
@@ -18,22 +27,24 @@
                     <td class="font-bold">Rp {{ number_format($fine->nominal_denda, 0, ',', '.') }}</td>
                     <td>
                         @if($fine->isPaid())
-                            <span class="badge-available">Lunas</span>
+                        <span class="badge-available">Lunas</span>
                         @else
-                            <span class="badge-borrowed">Belum</span>
+                        <span class="badge-borrowed">Belum</span>
                         @endif
                     </td>
                     <td>
                         @unless($fine->isPaid())
-                        <form method="POST" action="{{ route('admin.fines.pay', $fine) }}">
+                        <form method="POST" action="{{ route('admin.fines.pay', $fine) }}" class="inline-block m-0 p-0">
                             @csrf
-                            <button class="text-xs text-[#1a4d2e] hover:underline font-bold">Konfirmasi Bayar</button>
+                            <button type="submit" class="px-3 py-1.5 bg-[#1a4d2e]/10 text-[#1a4d2e] text-xs font-medium rounded-md hover:bg-[#1a4d2e] hover:text-white transition-colors duration-200">Konfirmasi Bayar</button>
                         </form>
                         @endunless
                     </td>
                 </tr>
                 @empty
-                <tr><td colspan="6" class="text-center text-[#717971] py-8">Tidak ada data denda.</td></tr>
+                <tr>
+                    <td colspan="6" class="text-center text-[#717971] py-8">Tidak ada data denda.</td>
+                </tr>
                 @endforelse
             </tbody>
         </table>

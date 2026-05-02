@@ -92,6 +92,20 @@ export default {
                 'nav': '0 2px 20px rgba(26, 77, 46, 0.06)',
                 'btn': 'inset 0 1px 2px rgba(0, 0, 0, 0.1)',
             },
+            animation: {
+                'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                'fade-in': 'fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            },
+            keyframes: {
+                fadeInUp: {
+                    '0%': { opacity: '0', transform: 'translateY(20px)' },
+                    '100%': { opacity: '1', transform: 'translateY(0)' },
+                },
+                fadeIn: {
+                    '0%': { opacity: '0' },
+                    '100%': { opacity: '1' },
+                },
+            },
         },
     },
 

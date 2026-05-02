@@ -29,17 +29,17 @@
                             <span class="badge-borrowed">Terlambat</span>
                         @endif
                     </td>
-                    <td class="flex gap-2">
+                    <td class="flex items-center gap-2">
                         @if($loan->status === 'pending')
-                            <form method="POST" action="{{ route('admin.loans.confirm', $loan) }}">
+                            <form method="POST" action="{{ route('admin.loans.confirm', $loan) }}" class="inline-block m-0 p-0">
                                 @csrf
-                                <button class="text-xs text-[#1a4d2e] hover:underline font-bold">Konfirmasi</button>
+                                <button type="submit" class="px-3 py-1.5 bg-[#1a4d2e]/10 text-[#1a4d2e] text-xs font-medium rounded-md hover:bg-[#1a4d2e] hover:text-white transition-colors duration-200">Konfirmasi</button>
                             </form>
                         @endif
                         @if(in_array($loan->status, ['dipinjam', 'terlambat']))
-                            <form method="POST" action="{{ route('admin.loans.return', $loan) }}">
+                            <form method="POST" action="{{ route('admin.loans.return', $loan) }}" class="inline-block m-0 p-0">
                                 @csrf
-                                <button class="text-xs text-[#c8401a] hover:underline font-bold">Kembalikan</button>
+                                <button type="submit" class="px-3 py-1.5 bg-[#c8401a]/10 text-[#c8401a] text-xs font-medium rounded-md hover:bg-[#c8401a] hover:text-white transition-colors duration-200">Kembalikan</button>
                             </form>
                         @endif
                     </td>

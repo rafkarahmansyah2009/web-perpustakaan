@@ -1,16 +1,22 @@
 <x-layouts.admin :header="'Laporan'">
     {{-- Date Filter --}}
-    <form method="GET" action="{{ route('admin.reports.index') }}" class="mb-6 flex flex-wrap items-end gap-4">
-        <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-[#1a4d2e] mb-2">Dari Tanggal</label>
-            <input type="date" name="start_date" value="{{ $startDate }}" class="input-field">
+    <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
+        <form method="GET" action="{{ route('admin.reports.index') }}" class="flex flex-wrap items-end gap-4">
+            <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-[#1a4d2e] mb-2">Dari Tanggal</label>
+                <input type="date" name="start_date" value="{{ $startDate }}" class="input-field">
+            </div>
+            <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-[#1a4d2e] mb-2">Sampai Tanggal</label>
+                <input type="date" name="end_date" value="{{ $endDate }}" class="input-field">
+            </div>
+            <button type="submit" class="btn-primary !py-3">Filter</button>
+        </form>
+        <div class="flex gap-2">
+            <a href="{{ route('admin.reports.export.pdf', request()->all()) }}" target="_blank" class="px-4 py-2.5 bg-[#c8401a] text-white text-sm font-medium rounded-md hover:bg-[#a63515] transition-colors duration-200">Export PDF</a>
+            <a href="{{ route('admin.reports.export.excel', request()->all()) }}" target="_blank" class="px-4 py-2.5 bg-[#1a4d2e] text-white text-sm font-medium rounded-md hover:bg-[#153d24] transition-colors duration-200">Export Excel</a>
         </div>
-        <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-[#1a4d2e] mb-2">Sampai Tanggal</label>
-            <input type="date" name="end_date" value="{{ $endDate }}" class="input-field">
-        </div>
-        <button type="submit" class="btn-primary !py-3">Filter</button>
-    </form>
+    </div>
 
     {{-- Stats --}}
     <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-6">

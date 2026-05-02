@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,20 +9,20 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
 </head>
+
 <body class="min-h-screen bg-[#f5f3ee]" x-data="{ sidebarOpen: true, mobileSidebar: false }">
 
     {{-- Sidebar --}}
     <aside class="fixed left-0 top-0 bottom-0 z-40 w-64 transition-transform duration-300"
-           :class="{ '-translate-x-full': !sidebarOpen && window.innerWidth >= 1024 }"
-           style="background: linear-gradient(180deg, #00361a 0%, #1a4d2e 100%);">
+        :class="{ '-translate-x-full': !sidebarOpen && window.innerWidth >= 1024 }"
+        style="background: linear-gradient(180deg, #00361a 0%, #1a4d2e 100%);">
 
         {{-- Logo --}}
         <div class="px-6 py-6 border-b border-white/10">
             <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-btn bg-white/15 flex items-center justify-center backdrop-blur-sm">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                    </svg>
+                <div class="w-10 h-10 rounded-full flex items-center justify-center bg-white p-1 shadow-lg">
+                    <img src="{{ asset('images/logo.jpg') }}" alt="Logo SMKN 5 Tangerang"
+                        class="w-full h-full object-contain">
                 </div>
                 <div>
                     <span class="font-headline text-white font-bold text-base leading-none">Perpustakaan</span>
@@ -32,28 +33,52 @@
 
         {{-- Navigation --}}
         <nav class="px-4 py-6 space-y-1">
-            <a href="{{ route('admin.dashboard') }}" class="sidebar-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+            <a href="{{ route('admin.dashboard') }}"
+                class="sidebar-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                </svg>
                 Dashboard
             </a>
-            <a href="{{ route('admin.books.index') }}" class="sidebar-link {{ request()->routeIs('admin.books.*') ? 'active' : '' }}">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            <a href="{{ route('admin.books.index') }}"
+                class="sidebar-link {{ request()->routeIs('admin.books.*') ? 'active' : '' }}">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
                 Buku
             </a>
-            <a href="{{ route('admin.members.index') }}" class="sidebar-link {{ request()->routeIs('admin.members.*') ? 'active' : '' }}">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/></svg>
+            <a href="{{ route('admin.members.index') }}"
+                class="sidebar-link {{ request()->routeIs('admin.members.*') ? 'active' : '' }}">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+                </svg>
                 Anggota
             </a>
-            <a href="{{ route('admin.loans.index') }}" class="sidebar-link {{ request()->routeIs('admin.loans.*') ? 'active' : '' }}">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+            <a href="{{ route('admin.loans.index') }}"
+                class="sidebar-link {{ request()->routeIs('admin.loans.*') ? 'active' : '' }}">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                </svg>
                 Peminjaman
             </a>
-            <a href="{{ route('admin.fines.index') }}" class="sidebar-link {{ request()->routeIs('admin.fines.*') ? 'active' : '' }}">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <a href="{{ route('admin.fines.index') }}"
+                class="sidebar-link {{ request()->routeIs('admin.fines.*') ? 'active' : '' }}">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
                 Denda
             </a>
-            <a href="{{ route('admin.reports.index') }}" class="sidebar-link {{ request()->routeIs('admin.reports.*') ? 'active' : '' }}">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <a href="{{ route('admin.reports.index') }}"
+                class="sidebar-link {{ request()->routeIs('admin.reports.*') ? 'active' : '' }}">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
                 Laporan
             </a>
         </nav>
@@ -61,7 +86,8 @@
         {{-- User Info --}}
         <div class="absolute bottom-0 left-0 right-0 px-4 py-4 border-t border-white/10">
             <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center text-white text-sm font-bold">
+                <div
+                    class="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center text-white text-sm font-bold">
                     {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
                 </div>
                 <div class="flex-1 min-w-0">
@@ -71,7 +97,10 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="text-white/50 hover:text-white transition-colors" title="Keluar">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
                     </button>
                 </form>
             </div>
@@ -79,7 +108,8 @@
     </aside>
 
     {{-- Mobile Sidebar Overlay --}}
-    <div x-show="mobileSidebar" x-cloak @click="mobileSidebar = false" class="lg:hidden fixed inset-0 bg-black/50 z-30"></div>
+    <div x-show="mobileSidebar" x-cloak @click="mobileSidebar = false" class="lg:hidden fixed inset-0 bg-black/50 z-30">
+    </div>
 
     {{-- Main Content --}}
     <div class="lg:ml-64 min-h-screen">
@@ -87,28 +117,36 @@
         <header class="glass-nav sticky top-0 z-20 h-16 flex items-center justify-between px-6">
             <div class="flex items-center gap-4">
                 <button @click="mobileSidebar = !mobileSidebar" class="lg:hidden text-[#1a4d2e]">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
                 </button>
                 <h1 class="font-headline text-xl font-bold text-[#1a4d2e]">{{ $header ?? 'Dashboard' }}</h1>
             </div>
             <div class="flex items-center gap-3">
-                <a href="{{ route('home') }}" class="text-sm text-[#414942] hover:text-[#1a4d2e] transition-colors" target="_blank">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                <a href="{{ route('home') }}" class="text-sm text-[#414942] hover:text-[#1a4d2e] transition-colors"
+                    target="_blank">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
                 </a>
             </div>
         </header>
 
         {{-- Toast --}}
-        @if(session('success') || session('error') || session('warning'))
-        <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)" x-transition class="fixed top-20 right-6 z-[60]">
-            @if(session('success'))
-                <div class="toast-success">{{ session('success') }}</div>
+        @if (session('success') || session('error') || session('warning'))
+        <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)" x-transition
+            class="fixed top-20 right-6 z-[60]">
+            @if (session('success'))
+            <div class="toast-success">{{ session('success') }}</div>
             @endif
-            @if(session('error'))
-                <div class="toast-error">{{ session('error') }}</div>
+            @if (session('error'))
+            <div class="toast-error">{{ session('error') }}</div>
             @endif
-            @if(session('warning'))
-                <div class="toast-warning">{{ session('warning') }}</div>
+            @if (session('warning'))
+            <div class="toast-warning">{{ session('warning') }}</div>
             @endif
         </div>
         @endif
@@ -120,5 +158,95 @@
     </div>
 
     @stack('scripts')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // SweetAlert2 Delete Confirmation
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "swal-btn-confirm",
+                    cancelButton: "swal-btn-cancel"
+                },
+                buttonsStyling: false
+            });
+
+            document.querySelectorAll('form[onsubmit*="confirm"]').forEach(form => {
+                form.removeAttribute('onsubmit');
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const thisForm = this;
+                    swalWithBootstrapButtons.fire({
+                        title: "Apakah Anda yakin?",
+                        text: "Data yang dihapus tidak dapat dikembalikan!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Ya, hapus!",
+                        cancelButtonText: "Batal",
+                        reverseButtons: true,
+                        background: '#f5f3ee',
+                        color: '#1b1c19',
+                        showClass: {
+                            popup: 'animate__animated animate__fadeInDown animate__faster'
+                        },
+                        hideClass: {
+                            popup: 'animate__animated animate__fadeOutUp animate__faster'
+                        }
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            swalWithBootstrapButtons.fire({
+                                title: "Terhapus!",
+                                text: "Data telah berhasil dihapus.",
+                                icon: "success",
+                                background: '#f5f3ee',
+                                color: '#1b1c19',
+                                showClass: {
+                                    popup: 'animate__animated animate__fadeInDown animate__faster'
+                                },
+                                hideClass: {
+                                    popup: 'animate__animated animate__fadeOutUp animate__faster'
+                                }
+                            }).then(() => {
+                                thisForm.submit();
+                            });
+                        } else if (result.dismiss === Swal.DismissReason.cancel) {
+                            swalWithBootstrapButtons.fire({
+                                title: "Dibatalkan",
+                                text: "Data Anda tetap aman :)",
+                                icon: "error",
+                                background: '#f5f3ee',
+                                color: '#1b1c19',
+                                showClass: {
+                                    popup: 'animate__animated animate__fadeInDown animate__faster'
+                                },
+                                hideClass: {
+                                    popup: 'animate__animated animate__fadeOutUp animate__faster'
+                                }
+                            });
+                        }
+                    });
+                });
+            });
+
+            // Password Toggle Visibility
+            document.querySelectorAll('.toggle-password').forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const passwordInput = document.getElementById(targetId);
+                    if (!passwordInput) return;
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput.setAttribute('type', type);
+
+                    const eyeIcon = this.querySelector('svg');
+                    if (type === 'text') {
+                        eyeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />';
+                    } else {
+                        eyeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>

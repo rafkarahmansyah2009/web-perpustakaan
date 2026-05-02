@@ -1,10 +1,11 @@
 @props(['book'])
 
-<a href="{{ route('catalog.show', $book) }}" class="card-elevate block group overflow-hidden">
+<a href="{{ route('catalog.show', $book) }}" class="card-elevate block group overflow-hidden bg-white/80 backdrop-blur-sm border border-white/40 hover:shadow-[0_20px_40px_rgba(26,77,46,0.12)] transition-all duration-500 hover:-translate-y-2">
     {{-- Cover --}}
-    <div class="aspect-[3/4] bg-[#f0eee9] overflow-hidden rounded-t-card">
+    <div class="aspect-[3/4] bg-[#f0eee9] overflow-hidden rounded-t-card relative">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
         @if($book->cover)
-            <img src="{{ Storage::url($book->cover) }}" alt="{{ $book->judul }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <img src="{{ Storage::url($book->cover) }}" alt="{{ $book->judul }}" class="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700 ease-out">
         @else
             <div class="w-full h-full flex flex-col items-center justify-center p-6 text-center" style="background: linear-gradient(135deg, #1a4d2e, #366847);">
                 <svg class="w-12 h-12 text-white/30 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
