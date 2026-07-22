@@ -7,14 +7,25 @@ use App\Http\Requests\MemberRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $members = User::where('role', '!=', 'admin')
-            ->latest()
-            ->paginate(15);
+        $query = User::where('role', '!=', 'admin')->latest();
+
+        if ($request->has('search') && $request->search != '') {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%")
+                  ->orWhere('nis', 'like', "%{$search}%")
+                  ->orWhere('nip', 'like', "%{$search}%");
+            });
+        }
+
+        $members = $query->paginate(15)->withQueryString();
 
         return view('admin.members.index', compact('members'));
     }

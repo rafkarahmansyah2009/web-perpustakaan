@@ -111,8 +111,8 @@
                 <div>
                     <h4 class="font-headline text-base font-semibold mb-4">Kontak</h4>
                     <div class="space-y-2 text-sm text-gray-300">
-                        <p>Jl. Poris Plawad, Cipondoh, Tangerang</p>
-                        <p>Telp: (021) 5584-0781</p>
+                        <p>Jl. Tripraja No.1, RT.003/RW.005, Panunggangan Utara, Kec. Pinang, Kota Tangerang, Banten 15143</p>
+                        <p>Telp: (021) 557800741</p>
                         <p>Email: perpustakaan@smkn5tng.sch.id</p>
                     </div>
                 </div>

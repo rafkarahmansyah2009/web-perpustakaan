@@ -1,9 +1,19 @@
 <x-layouts.admin :header="'Kelola Buku'">
-    <div class="flex items-center justify-between mb-6">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
         <p class="text-sm text-[#414942]">Total: {{ $books->total() }} buku</p>
-        <a href="{{ route('admin.books.create') }}" class="btn-primary text-sm !py-2">+ Tambah Buku</a>
+        
+        <div class="flex items-center gap-3">
+            <x-live-search 
+                action="{{ route('admin.books.index') }}" 
+                type="admin_books" 
+                placeholder="Cari buku..." 
+                wrapperClass="mb-0 w-full sm:w-64"
+                inputClass="!pr-4 !py-2"
+                :showButton="false"
+            />
+            <a href="{{ route('admin.books.create') }}" class="btn-primary text-sm !py-2 shrink-0">+ Tambah Buku</a>
+        </div>
     </div>
-
     <div class="bg-white rounded-card overflow-hidden" style="box-shadow: 0 2px 12px rgba(26,77,46,0.04);">
         <table class="w-full table-scholarly">
             <thead>

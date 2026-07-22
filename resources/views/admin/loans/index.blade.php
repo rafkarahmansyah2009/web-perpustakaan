@@ -8,6 +8,12 @@
         <a href="{{ route('admin.loans.index', ['status' => 'terlambat']) }}" class="px-4 py-2 rounded-btn text-sm font-medium transition-colors {{ request('status') == 'terlambat' ? 'bg-[#c8401a] text-white' : 'bg-white text-[#414942] hover:bg-[#eae8e3]' }}">Terlambat</a>
     </div>
 
+    <x-live-search 
+        action="{{ route('admin.loans.index') }}" 
+        type="loans" 
+        placeholder="Cari peminjam atau buku..." 
+    />
+
     <div class="bg-white rounded-card overflow-hidden" style="box-shadow: 0 2px 12px rgba(26,77,46,0.04);">
         <table class="w-full table-scholarly">
             <thead><tr class="bg-[#f5f3ee]"><th>Peminjam</th><th>Buku</th><th>Tgl Pinjam</th><th>Tgl Kembali</th><th>Status</th><th>Aksi</th></tr></thead>

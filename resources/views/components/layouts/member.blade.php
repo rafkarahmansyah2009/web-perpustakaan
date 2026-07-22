@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+
 <body class="min-h-screen bg-[#fbf9f4] text-[#1b1c19]" x-data="{ mobileMenu: false }">
 
     {{-- Member Navigation --}}
@@ -36,11 +38,11 @@
                 <div class="hidden md:flex items-center gap-3">
                     <div class="flex items-center gap-2">
                         @if(auth()->user()->foto)
-                            <img src="{{ Storage::url(auth()->user()->foto) }}" class="w-8 h-8 rounded-full object-cover" alt="">
+                        <img src="{{ Storage::url(auth()->user()->foto) }}" class="w-8 h-8 rounded-full object-cover" alt="">
                         @else
-                            <div class="w-8 h-8 rounded-full bg-[#1a4d2e] flex items-center justify-center text-white text-xs font-bold">
-                                {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
-                            </div>
+                        <div class="w-8 h-8 rounded-full bg-[#1a4d2e] flex items-center justify-center text-white text-xs font-bold">
+                            {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                        </div>
                         @endif
                         <span class="text-sm font-medium text-[#1b1c19]">{{ auth()->user()->name }}</span>
                     </div>
@@ -52,7 +54,9 @@
 
                 {{-- Mobile --}}
                 <button @click="mobileMenu = !mobileMenu" class="md:hidden text-[#1a4d2e]">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
                 </button>
             </div>
         </div>
@@ -63,13 +67,13 @@
     @if(session('success') || session('error') || session('warning'))
     <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)" x-transition class="fixed top-20 right-6 z-[60]">
         @if(session('success'))
-            <div class="toast-success">{{ session('success') }}</div>
+        <div class="toast-success">{{ session('success') }}</div>
         @endif
         @if(session('error'))
-            <div class="toast-error">{{ session('error') }}</div>
+        <div class="toast-error">{{ session('error') }}</div>
         @endif
         @if(session('warning'))
-            <div class="toast-warning">{{ session('warning') }}</div>
+        <div class="toast-warning">{{ session('warning') }}</div>
         @endif
     </div>
     @endif
@@ -78,7 +82,7 @@
         {{ $slot }}
     </main>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -168,4 +172,5 @@
         });
     </script>
 </body>
+
 </html>

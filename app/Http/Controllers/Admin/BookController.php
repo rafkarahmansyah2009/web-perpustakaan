@@ -7,12 +7,22 @@ use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::with('kategori')->latest()->paginate(15);
+        $query = Book::with('kategori')->latest();
+
+        if ($request->has('search') && $request->search != '') {
+            $search = $request->search;
+            $query->where('judul', 'like', "%{$search}%")
+                  ->orWhere('pengarang', 'like', "%{$search}%")
+                  ->orWhere('isbn', 'like', "%{$search}%");
+        }
+
+        $books = $query->paginate(15)->withQueryString();
         return view('admin.books.index', compact('books'));
     }
 

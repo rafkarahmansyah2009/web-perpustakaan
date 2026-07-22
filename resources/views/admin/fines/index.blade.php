@@ -1,8 +1,16 @@
 <x-layouts.admin :header="'Kelola Denda'">
-    <div class="mb-6">
+    <div class="mb-6 flex justify-between items-end gap-4 flex-wrap">
         <div class="stat-card inline-block">
             <p class="text-xs text-[#717971] font-bold uppercase tracking-wider">Total Denda Belum Lunas</p>
             <p class="font-headline text-2xl font-bold text-[#c8401a]">Rp {{ number_format($totalUnpaid, 0, ',', '.') }}</p>
+        </div>
+        <div class="w-full sm:w-96">
+            <x-live-search 
+                action="{{ route('admin.fines.index') }}" 
+                type="fines" 
+                placeholder="Cari peminjam atau buku..." 
+                wrapperClass="mb-0"
+            />
         </div>
     </div>
 

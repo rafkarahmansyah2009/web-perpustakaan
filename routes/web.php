@@ -22,6 +22,7 @@ use App\Http\Controllers\Member\ProfileController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/katalog', [CatalogController::class, 'index'])->name('catalog.index');
 Route::get('/katalog/{book}', [CatalogController::class, 'show'])->name('catalog.show');
+Route::get('/search/live', [\App\Http\Controllers\SearchController::class, 'liveSearch'])->name('search.live');
 Route::get('/pengumuman', [AnnouncementController::class, 'index'])->name('announcement.index');
 Route::get('/pengumuman/{announcement}', [AnnouncementController::class, 'show'])->name('announcement.show');
 

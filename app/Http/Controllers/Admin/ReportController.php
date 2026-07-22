@@ -13,10 +13,21 @@ class ReportController extends Controller
         $startDate = $request->input('start_date', now()->startOfMonth()->format('Y-m-d'));
         $endDate = $request->input('end_date', now()->format('Y-m-d'));
 
-        $loans = Loan::with(['user', 'book', 'fine'])
-            ->whereBetween('tgl_pinjam', [$startDate, $endDate])
-            ->latest()
-            ->get();
+        $query = Loan::with(['user', 'book', 'fine'])
+            ->whereBetween('tgl_pinjam', [$startDate, $endDate]);
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->whereHas('user', function ($u) use ($search) {
+                    $u->where('name', 'like', "%{$search}%");
+                })->orWhereHas('book', function ($b) use ($search) {
+                    $b->where('judul', 'like', "%{$search}%");
+                });
+            });
+        }
+
+        $loans = $query->latest()->get();
 
         $stats = [
             'total' => $loans->count(),

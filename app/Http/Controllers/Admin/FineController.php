@@ -8,11 +8,20 @@ use Carbon\Carbon;
 
 class FineController extends Controller
 {
-    public function index()
+    public function index(\Illuminate\Http\Request $request)
     {
-        $fines = Fine::with(['loan.user', 'loan.book'])
-            ->latest()
-            ->paginate(15);
+        $query = Fine::with(['loan.user', 'loan.book']);
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->whereHas('loan.user', function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%");
+            })->orWhereHas('loan.book', function ($q) use ($search) {
+                $q->where('judul', 'like', "%{$search}%");
+            });
+        }
+
+        $fines = $query->latest()->paginate(15)->withQueryString();
 
         $totalUnpaid = Fine::where('status_bayar', 'belum')->sum('nominal_denda');
 

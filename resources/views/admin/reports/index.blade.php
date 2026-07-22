@@ -42,6 +42,12 @@
         </div>
     </div>
 
+    <x-live-search 
+        action="{{ route('admin.reports.index') }}" 
+        type="reports" 
+        placeholder="Cari laporan berdasarkan peminjam atau buku..." 
+    />
+
     {{-- Table --}}
     <div class="bg-white rounded-card overflow-hidden" style="box-shadow: 0 2px 12px rgba(26,77,46,0.04);">
         <table class="w-full table-scholarly">
