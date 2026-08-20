@@ -118,8 +118,11 @@
                     </button>
                 </form>
 
-                <p class="mt-8 text-center text-xs text-[#717971]">
-                    Belum punya akun? Hubungi administrator perpustakaan.
+                <p class="mt-8 text-center text-sm text-[#717971]">
+                    Belum punya akun?
+                    <a href="{{ route('register') }}" class="font-semibold text-[#1a4d2e] hover:text-[#155a28] underline underline-offset-2 transition-colors">
+                        Daftar di sini
+                    </a>
                 </p>
             </div>
         </div>
